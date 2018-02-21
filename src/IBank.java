@@ -1,5 +1,10 @@
-import java.util.HashMap;
 
+import java.util.HashMap;
+/****
+ * 
+ * @author abdulaziz
+ * https://github.com/abdulaziz3/refactoringBankAssessment
+ */
 public interface IBank {
 	public void put(int key, BankAccount value);
 	

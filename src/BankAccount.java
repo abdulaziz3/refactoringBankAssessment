@@ -1,4 +1,8 @@
-
+/****
+ * 
+ * @author abdulaziz
+ * https://github.com/abdulaziz3/refactoringBankAssessment
+ */
 public class BankAccount implements IBankAccount {
 	
 	private int accountID;
@@ -24,9 +28,7 @@ public class BankAccount implements IBankAccount {
 	public BankAccount(){
 		this(0, "", "", "", "", 0.0, 0.0);
 	}
-	
-	
-	
+
 	public int getAccountID() {
 		return accountID;
 	}

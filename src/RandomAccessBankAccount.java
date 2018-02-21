@@ -1,8 +1,11 @@
 
-
 import java.io.RandomAccessFile;
 import java.io.IOException;
-
+/****
+ * 
+ * @author abdulaziz
+ * https://github.com/abdulaziz3/refactoringBankAssessments
+ */
 public class RandomAccessBankAccount extends BankAccount {
 	public static final int SIZE = 140;
 	

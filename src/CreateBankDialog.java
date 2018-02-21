@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import net.miginfocom.swing.MigLayout;
-
+/****
+ * 
+ * @author abdulaziz
+ * https://github.com/abdulaziz3/refactoringBankAssessment
+ */
 public class CreateBankDialog extends JFrame {
 
 	Random rand = new Random();
@@ -180,11 +185,10 @@ public class CreateBankDialog extends JFrame {
 			}
 		});
 	}
-	
-	/****
-	 * Method to add eventListener for cancel button
-	 * @param cancelButton
-	 */
+/**
+ * 
+ * @param cancelButton
+ */
 	void defineEventListenerForCancel(JButton cancelButton){
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
