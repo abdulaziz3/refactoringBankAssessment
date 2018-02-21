@@ -47,7 +47,7 @@ public class BankApplication extends JFrame {
 	IBankAccountRecordMenu bankAccountRecordMenu = new BankAccountRecordMenu();
 	IBankAccountTransactionMenu bankAccountTransactionMenu = new BankAccountTransactionMenu();
 	IBankAccountFileMenu bankAccountFileMenu = new BankAccountFileMenu();
-
+	
 	JMenuBar menuBar;
 	JMenu exitMenu;
 	JMenuItem closeApp;

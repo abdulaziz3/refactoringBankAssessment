@@ -27,7 +27,7 @@ public interface IBankAccountNavigate {
 	JMenuItem getLastItem();
 
 	JMenuItem getFindByAccount();
-
+	
 	JMenuItem getFindBySurname();
 
 	JButton getFirstItemButton();
