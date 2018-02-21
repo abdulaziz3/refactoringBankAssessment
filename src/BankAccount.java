@@ -1,5 +1,5 @@
 
-public class BankAccount {
+public class BankAccount implements IBankAccount {
 	
 	private int accountID;
 	private String accountNumber;

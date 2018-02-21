@@ -1,12 +1,10 @@
 
-
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 import java.util.Random;
 
@@ -22,58 +20,28 @@ import net.miginfocom.swing.MigLayout;
 
 public class CreateBankDialog extends JFrame {
 
-	
-	private final static int TABLE_SIZE = 29;
 	Random rand = new Random();
-	
-	ArrayList<BankAccount> accountList;
 
-	HashMap<Integer, BankAccount> table = new HashMap<Integer, BankAccount>();
-	
-	
-	
-	
-	public void put(int key, BankAccount value){
-		int hash = (key%TABLE_SIZE);
-
-		while(table.containsKey(key)){
-			hash = hash+1;
-		}
-		table.put(hash, value);
-	}
-	
-	
-	
-	
-	// Constructor code based on that for the Create and Edit dialog classes in the Shapes exercise.
+	Bank bank = new Bank();
 
 	JLabel accountIDLabel, accountNumberLabel, firstNameLabel, surnameLabel, accountTypeLabel, balanceLabel, overdraftLabel;
-	
-	
+
 	JComboBox comboBox;
 	JTextField accountNumberTextField;
 	final JTextField firstNameTextField, surnameTextField, accountTypeTextField, balanceTextField, overdraftTextField;
 	
-	CreateBankDialog(HashMap accounts) {
+	CreateBankDialog(HashMap<Integer, BankAccount> accounts) {
 		
 		super("Add Bank Details");
 		
-		table = accounts;
+		bank.setTable(accounts);
 		
 		setLayout(new BorderLayout());
 		
 		JPanel dataPanel = new JPanel(new MigLayout());
-		
-		
-		
-		
-		
-		
-		
 		String[] comboTypes = {"Current", "Deposit"};
 		
 		final JComboBox comboBox = new JComboBox(comboTypes);
-		
 		
 		accountNumberLabel = new JLabel("Photograph file name: ");
 		accountNumberTextField = new JTextField(15);
@@ -133,15 +101,25 @@ public class CreateBankDialog extends JFrame {
 		
 		add(buttonPanel, BorderLayout.SOUTH);
 		
+		defineEventListenerForAdd(addButton, comboBox);
+		defineEventListenerForCancel(cancelButton);
+		
+		setSize(400,800);
+		pack();
+		setVisible(true);
+
+	}
+	
+	/*****
+	 * Method to add event listener for add button
+	 * @param addButton
+	 */
+	void defineEventListenerForAdd(JButton addButton,  JComboBox comboBox)
+	{
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
-				
 				String accountNumber = accountNumberTextField.getText();
-				
-				
-							
 				
 				String surname = surnameTextField.getText();
 				String firstName = firstNameTextField.getText();
@@ -150,13 +128,10 @@ public class CreateBankDialog extends JFrame {
 				
 				String balanceStr = balanceTextField.getText();
 				String overdraftStr = overdraftTextField.getText();
-				
-				
 
 				double balance;
 				double overdraft;
-				
-		
+
 				if (accountNumber != null && accountNumber.length()==8 && surname != null && firstName != null && accountType != null) {
 					try {
 						
@@ -165,7 +140,7 @@ public class CreateBankDialog extends JFrame {
 							
 							int randNumber = rand.nextInt(24) + 1;
 						
-						 for (Map.Entry<Integer, BankAccount> entry : table.entrySet()) {
+						 for (Map.Entry<Integer, BankAccount> entry : bank.getTable().entrySet()) {
 							 
 							 while(randNumber == entry.getValue().getAccountID()){
 								 idTaken = true;
@@ -173,27 +148,24 @@ public class CreateBankDialog extends JFrame {
 							 }		 
 						 }
 					 
-							for (Map.Entry<Integer, BankAccount> entry : table.entrySet()) {					
+							for (Map.Entry<Integer, BankAccount> entry : bank.getTable().entrySet()) {					
 								 if(entry.getValue().getAccountNumber().trim().equals(accountNumberTextField.getText())){
 									 accNumTaken=true;	
-									 
 								 }
 							 }
 						
 						if(!accNumTaken){
-						
-						
+
 							BankAccount account = new BankAccount(randNumber, accountNumber, surname, firstName, accountType, 0.0, 0.0);
-						
-							
+
 							int key = Integer.parseInt(account.getAccountNumber());
 							
-							int hash = (key%TABLE_SIZE);
+							int hash = (key%bank.getTableSize());
 							
-							while(table.containsKey(hash)){
+							while(bank.getTable().containsKey(hash)){
 								hash = hash+1;
 							}
-							table.put(hash, account);
+							bank.getTable().put(hash, account);
 						}
 						else{
 							JOptionPane.showMessageDialog(null, "Account Number must be unique");
@@ -207,19 +179,17 @@ public class CreateBankDialog extends JFrame {
 				dispose();
 			}
 		});
-		
+	}
+	
+	/****
+	 * Method to add eventListener for cancel button
+	 * @param cancelButton
+	 */
+	void defineEventListenerForCancel(JButton cancelButton){
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		
-		setSize(400,800);
-		pack();
-		setVisible(true);
-
 	}
-	
-	
-	
 }
