@@ -116,7 +116,7 @@ public class CreateBankDialog extends JFrame {
 	}
 	
 	/*****
-	 * Method to add event listener for add button
+	 * Method to add event listener for add button & combo box
 	 * @param addButton
 	 */
 	void defineEventListenerForAdd(JButton addButton,  JComboBox comboBox)
