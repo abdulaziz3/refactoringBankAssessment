@@ -28,12 +28,8 @@ public class CreateBankDialog extends JFrame {
 	Random rand = new Random();
 
 	Bank bank = new Bank();
-
-	JLabel accountIDLabel, accountNumberLabel, firstNameLabel, surnameLabel, accountTypeLabel, balanceLabel, overdraftLabel;
-
+	IBankApplicationAccountDetail bankApplicationAccountDetail = new BankApplicationAccountDetail();
 	JComboBox comboBox;
-	JTextField accountNumberTextField;
-	final JTextField firstNameTextField, surnameTextField, accountTypeTextField, balanceTextField, overdraftTextField;
 	
 	CreateBankDialog(HashMap<Integer, BankAccount> accounts) {
 		
@@ -47,53 +43,39 @@ public class CreateBankDialog extends JFrame {
 		String[] comboTypes = {"Current", "Deposit"};
 		
 		final JComboBox comboBox = new JComboBox(comboTypes);
+	
 		
-		accountNumberLabel = new JLabel("Photograph file name: ");
-		accountNumberTextField = new JTextField(15);
+		bankApplicationAccountDetail.getAccountNumberTextField().setEditable(true);
 		
-		accountNumberLabel = new JLabel("Account Number: ");
-		accountNumberTextField = new JTextField(15);
-		accountNumberTextField.setEditable(true);
-		
-		dataPanel.add(accountNumberLabel, "growx, pushx");
-		dataPanel.add(accountNumberTextField, "growx, pushx, wrap");
+		dataPanel.add(bankApplicationAccountDetail.getAccountNumberLabel(), "growx, pushx");
+		dataPanel.add(bankApplicationAccountDetail.getAccountNumberTextField(), "growx, pushx, wrap");
 
-		surnameLabel = new JLabel("Last Name: ");
-		surnameTextField = new JTextField(15);
-		surnameTextField.setEditable(true);
+		bankApplicationAccountDetail.getSurnameTextField().setEditable(true);
 		
-		dataPanel.add(surnameLabel, "growx, pushx");
-		dataPanel.add(surnameTextField, "growx, pushx, wrap");
+		dataPanel.add(bankApplicationAccountDetail.getSurnameLabel(), "growx, pushx");
+		dataPanel.add(bankApplicationAccountDetail.getSurnameTextField(), "growx, pushx, wrap");
 
-		firstNameLabel = new JLabel("First Name: ");
-		firstNameTextField = new JTextField(15);
-		firstNameTextField.setEditable(true);
+		bankApplicationAccountDetail.getFirstNameTextField().setEditable(true);
 		
-		dataPanel.add(firstNameLabel, "growx, pushx");
-		dataPanel.add(firstNameTextField, "growx, pushx, wrap");
+		dataPanel.add(bankApplicationAccountDetail.getFirstNameLabel(), "growx, pushx");
+		dataPanel.add(bankApplicationAccountDetail.getFirstNameTextField(), "growx, pushx, wrap");
 
-		accountTypeLabel = new JLabel("Account Type: ");
-		accountTypeTextField = new JTextField(5);
-		accountTypeTextField.setEditable(true);
+		bankApplicationAccountDetail.getAccountTypeTextField().setEditable(true);
 		
-		dataPanel.add(accountTypeLabel, "growx, pushx");	
+		dataPanel.add(bankApplicationAccountDetail.getAccountTypeLabel(), "growx, pushx");	
 		dataPanel.add(comboBox, "growx, pushx, wrap");
 
-		balanceLabel = new JLabel("Balance: ");
-		balanceTextField = new JTextField(10);
-		balanceTextField.setText("0.0");
-		balanceTextField.setEditable(false);
+		bankApplicationAccountDetail.getBalanceTextField().setText("0.0");
+		bankApplicationAccountDetail.getBalanceTextField().setEditable(false);
 		
-		dataPanel.add(balanceLabel, "growx, pushx");
-		dataPanel.add(balanceTextField, "growx, pushx, wrap");
+		dataPanel.add(bankApplicationAccountDetail.getBalanceLabel(), "growx, pushx");
+		dataPanel.add(bankApplicationAccountDetail.getBalanceTextField(), "growx, pushx, wrap");
 		
-		overdraftLabel = new JLabel("Overdraft: ");
-		overdraftTextField = new JTextField(10);
-		overdraftTextField.setText("0.0");
-		overdraftTextField.setEditable(false);
+		bankApplicationAccountDetail.getOverdraftTextField().setText("0.0");
+		bankApplicationAccountDetail.getOverdraftTextField().setEditable(false);
 		
-		dataPanel.add(overdraftLabel, "growx, pushx");
-		dataPanel.add(overdraftTextField, "growx, pushx, wrap");
+		dataPanel.add(bankApplicationAccountDetail.getOverdraftLabel(), "growx, pushx");
+		dataPanel.add(bankApplicationAccountDetail.getOverdraftTextField(), "growx, pushx, wrap");
 		
 		add(dataPanel, BorderLayout.CENTER);
 		
@@ -124,15 +106,15 @@ public class CreateBankDialog extends JFrame {
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String accountNumber = accountNumberTextField.getText();
+				String accountNumber = bankApplicationAccountDetail.getAccountNumberTextField().getText();
 				
-				String surname = surnameTextField.getText();
-				String firstName = firstNameTextField.getText();
+				String surname = bankApplicationAccountDetail.getSurnameTextField().getText();
+				String firstName = bankApplicationAccountDetail.getFirstNameTextField().getText();
 			
 				String accountType = comboBox.getSelectedItem().toString();
 				
-				String balanceStr = balanceTextField.getText();
-				String overdraftStr = overdraftTextField.getText();
+				String balanceStr = bankApplicationAccountDetail.getBalanceTextField().getText();
+				String overdraftStr = bankApplicationAccountDetail.getOverdraftTextField().getText();
 
 				double balance;
 				double overdraft;
@@ -154,7 +136,7 @@ public class CreateBankDialog extends JFrame {
 						 }
 					 
 							for (Map.Entry<Integer, BankAccount> entry : bank.getTable().entrySet()) {					
-								 if(entry.getValue().getAccountNumber().trim().equals(accountNumberTextField.getText())){
+								 if(entry.getValue().getAccountNumber().trim().equals(bankApplicationAccountDetail.getAccountNumberTextField().getText())){
 									 accNumTaken=true;	
 								 }
 							 }

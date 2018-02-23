@@ -6,9 +6,7 @@ import java.io.IOException;
  * @author abdulaziz
  * https://github.com/abdulaziz3/refactoringBankAssessments
  */
-public class RandomAccessBankAccount extends BankAccount {
-	public static final int SIZE = 140;
-	
+public class RandomAccessBankAccount extends BankAccount implements IRandomAccessBankAccount {
 	public RandomAccessBankAccount(){
 		this(0, "", "", "", "", 0.0, 0.0);
 	}
