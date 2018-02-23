@@ -9,6 +9,11 @@ import javax.swing.JMenuItem;
  */
 public class BankAccountTransactionMenu extends JFrame implements IBankAccountTransactionMenu{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private JMenu   transactionsMenu;
 	private JMenuItem deposit, withdraw, calcInterest;
 	

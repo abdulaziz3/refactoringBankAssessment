@@ -1,6 +1,11 @@
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+/*****
+ * 
+ * @author abdulaziz
+ * https://github.com/abdulaziz3/refactoringBankAssessment
+ */
 public interface IBankApplicationAccountDetail {
 
 	void initComponents();

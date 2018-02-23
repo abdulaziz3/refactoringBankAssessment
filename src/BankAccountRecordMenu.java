@@ -9,6 +9,11 @@ import javax.swing.JMenuItem;
  */
 public class BankAccountRecordMenu extends JFrame implements IBankAccountRecordMenu {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private JMenu recordsMenu;
 	
 	private JMenuItem createItem, modifyItem, deleteItem, setOverdraft, setInterest;

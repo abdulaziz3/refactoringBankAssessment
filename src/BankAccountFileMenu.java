@@ -11,6 +11,11 @@ import javax.swing.JMenuItem;
  */
 public class BankAccountFileMenu extends JFrame implements IBankAccountFileMenu {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	JMenu   fileMenu;
 	JMenuItem open, save, saveAs;
 		
@@ -20,7 +25,6 @@ public class BankAccountFileMenu extends JFrame implements IBankAccountFileMenu 
 		initComponents();
 	}
 	
-	@Override
 	public void initComponents() {
 		
 		fileMenu = new JMenu("File");
